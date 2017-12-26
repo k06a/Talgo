@@ -92,7 +92,7 @@ process.on('unhandledRejection', (reason, p) => {
 	const macd = new NaiveMACD();	
 	
 	const buy = function(price, time) {
-		const amountUSD = balanceEQ(balanceUSD, balanceBTC, price) / 3;
+		const amountUSD = balanceUSD * 2 /3;
 		if (balanceUSD > amountUSD) {
 			balanceUSD -= amountUSD;
 			balanceBTC += amountUSD / price;
@@ -106,7 +106,7 @@ process.on('unhandledRejection', (reason, p) => {
 	}
 
 	const sell = function(price, time) {
-		const amountBTC = (balanceEQ(balanceUSD, balanceBTC, price) / price) / 3;
+		const amountBTC = balanceBTC * 2 / 3;
 		if (balanceBTC > amountBTC) {
 			balanceBTC -= amountBTC;
 			balanceUSD += amountBTC * price;
